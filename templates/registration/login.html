@@ -1,0 +1,77 @@
+{% extends "base_accounts.html" %}
+
+{% block content %}
+
+  <!-- /.login-logo -->
+
+  {% if form.errors %}
+  <p>Ваш логин или пароль неверны. Попробуйте еще раз.</p>
+{% endif %}
+
+{% if next %}
+  {% if user.is_authenticated %}
+    <p>У Вас недостаточно прав для просмотра этой страницы. Запросите доступ у Администратора.</p>
+  {% else %}
+    <p>Для отображения данной страницы необходимо выполнить вход в систему</p>
+  {% endif %}
+{% endif %}
+
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">Вход в систему</p>
+
+      <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+          <!--<input type="email" class="form-control" placeholder="Email">-->
+          <input type="text" class="form-control" name="username" autofocus autocapitalize="none" autocomplete="username" maxlength="150" required id="id_username">
+
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <!--<input type="password" class="form-control" placeholder="Пароль">-->
+
+          <input type="password" name="password" autocomplete="current-password" required id="id_password" class="form-control" placeholder="Пароль">
+
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <div class="icheck-primary">
+              <input type="checkbox" id="remember">
+              <label for="remember">
+                Запомнить меня
+              </label>
+            </div>
+          </div>
+          <!-- /.col -->
+          <div class="col-4">
+            <!--<button type="submit" class="btn btn-primary btn-block">Войти</button>-->
+            <input type="submit" value="Войти"  class="btn btn-primary btn-block"/>
+            <input type="hidden" name="next" value="{{ next }}" />
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+
+      <p class="mb-1">
+        <a href="{% url 'password_reset' %}">Восстановить пароль</a>
+      </p>
+      <p class="mb-0">
+        <a href="{% url 'signup' %}" class="text-center">Зарегистрировать нового пользователя</a>
+      </p>
+    </div>
+    <!-- /.login-card-body -->
+  </div>
+
+
+{% endblock %}
+

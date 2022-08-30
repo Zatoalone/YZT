@@ -1,0 +1,29 @@
+<!--<div class="float-right">
+                  1-50/200
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-default btn-sm">
+                      <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button type="button" class="btn btn-default btn-sm">
+                      <i class="fas fa-chevron-right"></i>
+                    </button>
+                  </div>
+
+</div>-->
+
+<div class="float-right">
+            {{ page.number }} / {{ page.paginator.num_pages}}
+        <div class="btn-group">
+        {% if page.has_previous %}
+        <button type="button" class="btn btn-default btn-sm">
+            <a href="?page={{page.previous_page_number}}" class="fas fa-chevron-left"></a>
+        </button>
+        {% endif %}
+
+        {% if page.has_next %}
+        <button type="button" class="btn btn-default btn-sm">
+            <a href="?page={{page.next_page_number}}" class="fas fa-chevron-right"></a>
+        </button>
+        {% endif %}
+            </div>
+</div>

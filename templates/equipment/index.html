@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load static %}
+
+    {% block content %}
+
+  <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Заргистрированное оборудование</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example2" class="table table-bordered table-hover">
+                  <thead>
+
+                  <tr>
+                      <th>#</th>
+                    <th>Название</th>
+                    <th>Изображение</th>
+                    <th>Уникальный идентификатор</th>
+
+                    <th>Параметр №2</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+
+                   {% for equipment in equipments %}
+                  <tr>
+                      <td>{{ forloop.counter }}</td>
+
+    <td><a href="{{equipment.get_absolute_url}}">{{ equipment.name}}</a></td>
+    <td>
+    {% if equipment.banner == "" %}
+        <img src="/media/equipment_banners/default_equipment.jpg">
+    {% else %}
+        <img src="{{ equipment.banner.url }}">
+    {% endif%}
+                    </td>
+                    <td>
+                      {{ equipment.uid}}
+                    </td>
+
+                     <td>-</td>
+                  </tr>
+{% endfor %}
+
+                  </tfoot>
+                </table>
+              </div>
+                <div class="col-12">
+{% include "pagination.html" with page=equipments %}
+                </div>
+              <!-- /.card-body -->
+            </div>
+
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+
+
+
+    {% endblock %}

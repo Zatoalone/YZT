@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load static %}
+
+    {% block content %}
+
+  <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Зарегистрированные буровые установки</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example2" class="table table-bordered table-hover">
+                  <thead>
+
+                  <tr>
+                      <th>#</th>
+                    <th>Название</th>
+                    <th>Изображение</th>
+                    <th>Уникальный идентификатор</th>
+
+                    <th>Статус</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+
+                   {% for rig in rigs %}
+                  <tr>
+                      <td>{{ forloop.counter }}</td>
+
+                      <td><a href="{{rig.get_absolute_url}}">{{ rig.name}}</a></td>
+    <td>
+    {% if rig.banner == "" %}
+        <img src="/media/rig_banners/default_rig.jpg">
+    {% else %}
+        <img src="{{ rig.banner.url }}">
+    {% endif%}
+                    </td>
+                    <td>
+                      {{ rig.uid}}
+                    </td>
+
+                     <td>{{ rig.status}}</td>
+                  </tr>
+{% endfor %}
+
+                  </tfoot>
+                </table>
+              </div>
+                <div class="col-12">
+{% include "pagination.html" with page=rigs %}
+                </div>
+              <!-- /.card-body -->
+            </div>
+
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+
+
+
+    {% endblock %}

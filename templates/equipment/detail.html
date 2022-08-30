@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+    {% block content %}
+
+    <!-- Main content -->
+    <!--<section class="content">-->
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header p-2">
+                  <img
+                    {% if equipment.banner == "" %}
+                        src="/media/equipment_banners/default_equipment.jpg"
+                        {% else %}
+                        src="{{ equipment.banner.url }}"
+                        {% endif%}
+                  >
+                <h3 class="profile-username text-center">{{equipment.name}}</h3>
+
+                <p class="text-muted text-center">{{equipment.uid}}</p>
+                <p class="text-muted text-center">{{equipment.description}}</p>
+              </div><!-- /.card-header -->
+              <div class="card-body">
+
+              </div><!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    <!--</section>-->
+    </div>
+
+
+{% endblock %}
