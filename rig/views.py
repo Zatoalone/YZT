@@ -3,10 +3,11 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic.base import View
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponseRedirect
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Rig
 
 
-class RigView(View):
+class RigView(LoginRequiredMixin, View):
 
     def get(self, request):
 
@@ -25,7 +26,7 @@ class RigView(View):
         return render(request, 'rig/index.html', {'page': page, 'rigs': rigs, 'title': title, 'header': header})
 
 
-class RigDetailView(View):
+class RigDetailView(LoginRequiredMixin, View):
     def get(self, request, rig):
         rig = get_object_or_404(Rig, uid=rig)
         #print(rig.equipments.all())

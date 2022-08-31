@@ -35,9 +35,9 @@
     <td><a href="{{equipment.get_absolute_url}}">{{ equipment.name}}</a></td>
     <td>
     {% if equipment.banner == "" %}
-        <img src="/media/equipment_banners/default_equipment.jpg">
+        <img src="/media/equipment_banners/default_equipment.jpg" width="100" height="100">
     {% else %}
-        <img src="{{ equipment.banner.url }}">
+        <img src="{{ equipment.banner.url }}" width="100" height="100">
     {% endif%}
                     </td>
                     <td>

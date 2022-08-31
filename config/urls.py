@@ -23,7 +23,8 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/',  include('accounts.urls')),
     path('', include('dashboard.urls')),
-    path('equipments', include('equipment.urls', namespace='equipment')),
+    path('wells/', include('well.urls', namespace='wells')),
+    path('equipments', include('equipment.urls', namespace='equipments')),
     path('rigs', include('rig.urls', namespace='rigs'), )
 ]
 if settings.DEBUG:

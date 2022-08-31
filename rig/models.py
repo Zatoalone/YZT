@@ -1,6 +1,7 @@
 from django.db import models
 from equipment.models import Equipment
 from django.urls import reverse
+import uuid
 
 
 class Rig(models.Model):
@@ -12,8 +13,8 @@ class Rig(models.Model):
         ('unknown', 'Статус неизвестен'),
     )
 
-    name = models.CharField(max_length=150, verbose_name="Название оборудования")
-    uid = models.CharField(max_length=150, verbose_name="Уникальный идентификатор")
+    name = models.CharField(max_length=150, verbose_name="Название буровой установки")
+    uid = models.UUIDField(default=uuid.uuid4, editable=True, unique=True, verbose_name="Уникальный идентификатор")
     banner = models.ImageField(upload_to='rig_banners/', blank=True, verbose_name="Изображение буровой установки")
     equipments = models.ManyToManyField(Equipment, blank=True, verbose_name='Оборудование')
     description = models.TextField(blank=True, verbose_name="Описание буровой установки")

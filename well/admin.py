@@ -1,10 +1,10 @@
 from django.contrib import admin
 
-from .models import Well, StatusWell, PurposeWell, Field
+from .models import Well, StatusWell, PurposeWell, Field, Wellbore, Shape, TypeWellbore
 
 
 @admin.register(Field)
-class ArticleAdmin(admin.ModelAdmin):
+class FieldAdmin(admin.ModelAdmin):
     list_display = ('name', 'uid',)
     list_filter = ('name', 'uid',)
     search_fields = ('name', 'uid')
@@ -12,23 +12,46 @@ class ArticleAdmin(admin.ModelAdmin):
 
 
 @admin.register(StatusWell)
-class ArticleAdmin(admin.ModelAdmin):
-    list_display = ('name',)
-    list_filter = ('name', )
-    search_fields = ('name', )
-    ordering = ('name',)
+class StatusWellAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description')
+    list_filter = ('name', 'description')
+    search_fields = ('name', 'description')
+    ordering = ('name', 'description')
 
 
 @admin.register(PurposeWell)
-class ArticleAdmin(admin.ModelAdmin):
-    list_display = ('name',)
-    list_filter = ('name',)
-    search_fields = ('name', )
-    ordering = ('name',)
+class PurposeWellAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description')
+    list_filter = ('name', 'description')
+    search_fields = ('name', 'description')
+    ordering = ('name', 'description')
 
 
 @admin.register(Well)
-class ArticleAdmin(admin.ModelAdmin):
+class WellAdmin(admin.ModelAdmin):
+    list_display = ('name', 'uid',)
+    list_filter = ('name', 'uid',)
+    search_fields = ('name', 'uid')
+    ordering = ('name', 'uid',)
+
+@admin.register(Shape)
+class ShapeAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description')
+    list_filter = ('name', 'description')
+    search_fields = ('name', 'description')
+    ordering = ('name', 'description')
+
+
+@admin.register(TypeWellbore)
+class TypeWellboreAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description')
+    list_filter = ('name', 'description')
+    search_fields = ('name', 'description')
+    ordering = ('name', 'description')
+
+
+@admin.register(Wellbore)
+class WellboreAdmin(admin.ModelAdmin):
     list_display = ('name', 'uid',)
     list_filter = ('name', 'uid',)
     search_fields = ('name', 'uid')

@@ -10,7 +10,7 @@ def index(request):
 
     get_profile = Profile.objects.get(user_id=request.user.id)
     get_user = request.user
-    print(get_user)
+    #print(get_user)
     #get_group = StudentsGroup.objects.all()
     #get_lessons = Lesson.objects.all()
     context = {
@@ -20,5 +20,5 @@ def index(request):
         'get_user': get_user
     }
     template = "dashboard/index.html"
-    print(get_profile.user)
+    #print(get_profile.user)
     return render(request, template, context)

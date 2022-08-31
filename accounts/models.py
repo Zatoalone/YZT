@@ -15,13 +15,11 @@ class JobTitle(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    company = models.OneToOneField(Company, on_delete=models.CASCADE)
-    title = models.OneToOneField(JobTitle, on_delete=models.CASCADE)
+    company = models.ForeignKey(Company, blank=True, on_delete=models.CASCADE, default=1)
+    title = models.ForeignKey(JobTitle, blank=True, on_delete=models.CASCADE, default=1)
 
     def __str__(self):
-        return self
-
-
+        return str(self.user)
 
 
 @receiver(post_save, sender=User)

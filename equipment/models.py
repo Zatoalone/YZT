@@ -1,10 +1,11 @@
 from django.db import models
 from django.urls import reverse
+import uuid
 
 
 class Equipment(models.Model):
     name = models.CharField(max_length=150, verbose_name="Название оборудования")
-    uid = models.CharField(max_length=150, verbose_name="Уникальный идентификатор")
+    uid = models.UUIDField(default=uuid.uuid4, editable=True, unique=True, verbose_name="Уникальный идентификатор")
     banner = models.ImageField(upload_to='equipment_banners/', blank=True, verbose_name="Изображение оборудования")
     description = models.TextField(blank=True, verbose_name="Описание оборудования")
 

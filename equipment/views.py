@@ -5,10 +5,11 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic.base import View
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponseRedirect
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Equipment
 
 
-class EquipmentView(View):
+class EquipmentView(LoginRequiredMixin, View):
 
     def get(self, request):
 
@@ -29,7 +30,7 @@ class EquipmentView(View):
         return render(request, 'equipment/index.html', {'page': page, 'equipments': equipments, 'title': title, 'header': header})
 
 
-class EquipmentDetailView(View):
+class EquipmentDetailView(LoginRequiredMixin, View):
     def get(self, request, equipment):
         equipment = get_object_or_404(Equipment, uid=equipment)
         return render(request, 'equipment/detail.html', {'equipment': equipment})
